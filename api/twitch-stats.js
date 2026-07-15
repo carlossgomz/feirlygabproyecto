@@ -4,8 +4,8 @@
 // que va guardando api/collect-sample.js.
 // Endpoint: https://tu-proyecto.vercel.app/api/twitch-stats
 
-import { getBroadcasterId, getLiveStatus, twitchFetch } from '../lib/twitch.js';
-import { getAverageViewers } from '../lib/redis.js';
+import { getBroadcasterInfo, getLiveStatus, twitchFetch } from '../lib/twitch.js';
+import { getAverageViewers, getPeakViewers, getHoursStreamed } from '../lib/redis.js';
 
 export default async function handler(req, res) {
   const { TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET, TWITCH_CHANNEL_LOGIN } = process.env;
@@ -17,9 +17,10 @@ export default async function handler(req, res) {
   }
 
   try {
-    const broadcasterId = await getBroadcasterId(TWITCH_CHANNEL_LOGIN, TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET);
+    const broadcasterInfo = await getBroadcasterInfo(TWITCH_CHANNEL_LOGIN, TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET);
+    const broadcasterId = broadcasterInfo.id;
 
-    const [followersData, liveStatus, avgData] = await Promise.all([
+    const [followersData, liveStatus, avgData, peakViewers, hoursStreamed] = await Promise.all([
       twitchFetch(`channels/followers?broadcaster_id=${broadcasterId}`, TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET),
       getLiveStatus(broadcasterId, TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET),
       // Si Redis no está configurado todavía, no tumbes toda la respuesta:
@@ -27,6 +28,14 @@ export default async function handler(req, res) {
       getAverageViewers({ withinDays: 30 }).catch((err) => {
         console.error('No se pudo leer el promedio de Redis:', err.message);
         return { average: null, sampleCount: 0 };
+      }),
+      getPeakViewers().catch((err) => {
+        console.error('No se pudo leer el pico de viewers de Redis:', err.message);
+        return null;
+      }),
+      getHoursStreamed().catch((err) => {
+        console.error('No se pudieron leer las horas transmitidas de Redis:', err.message);
+        return null;
       }),
     ]);
 
@@ -38,6 +47,9 @@ export default async function handler(req, res) {
       currentViewers: liveStatus.currentViewers,
       avgViewers: avgData.average, // null si aún no hay muestras suficientes
       avgSampleCount: avgData.sampleCount,
+      peakViewers, // null si aún no hay muestras suficientes
+      hoursStreamed, // null si aún no hay muestras suficientes
+      profileImageUrl: broadcasterInfo.profileImageUrl,
       updatedAt: new Date().toISOString(),
     });
   } catch (err) {

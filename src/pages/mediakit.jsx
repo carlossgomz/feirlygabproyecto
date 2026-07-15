@@ -10,6 +10,8 @@ const STATS_API_URL = '/api/twitch-stats';
 const FALLBACK_STATS = {
     followers: '500K+',
     viewers: '2.5K+',
+    peakViewers: '5K+',
+    hoursStreamed: '—',
 };
 
 function formatNumber(n) {
@@ -78,11 +80,21 @@ export default function MediaKit() {
             : (hasRealAverage ? formatNumber(twitchStats.avgViewers) : AVERAGE_VIEWERS_MANUAL))
         : (statsError ? FALLBACK_STATS.viewers : '...');
 
+    // Pico histórico de espectadores (dato acumulado por tu backend, ej. en Redis)
+    const peakViewersValue = twitchStats && twitchStats.peakViewers !== undefined && twitchStats.peakViewers !== null
+        ? formatNumber(twitchStats.peakViewers)
+        : (statsError ? FALLBACK_STATS.peakViewers : '...');
+
+    // Horas transmitidas (total acumulado o del período que definas en el backend)
+    const hoursStreamedValue = twitchStats && twitchStats.hoursStreamed !== undefined && twitchStats.hoursStreamed !== null
+        ? `${Math.round(twitchStats.hoursStreamed)}h`
+        : (statsError ? FALLBACK_STATS.hoursStreamed : '...');
+
     const stats = [
         { id: 1, label: 'Seguidores en Twitch', value: followersValue, color: 'purple' },
         { id: 2, label: audienceLabel, value: audienceValue, color: 'cyan' },
-        { id: 3, label: 'Impresiones Mensuales', value: '4M+', color: 'pink' },
-        { id: 4, label: 'Engagement Rate', value: '18.4%', color: 'white' }
+        { id: 3, label: 'Pico de Espectadores', value: peakViewersValue, color: 'pink' },
+        { id: 4, label: 'Horas Transmitidas', value: hoursStreamedValue, color: 'white' }
     ];
 
     const handleSubmit = (e) => {
@@ -100,6 +112,13 @@ export default function MediaKit() {
 
                 {/* Encabezado Corporativo */}
                 <div className="mediakit-header">
+                    {twitchStats?.profileImageUrl && (
+                        <img
+                            src={twitchStats.profileImageUrl}
+                            alt="Foto de perfil de Twitch"
+                            className="profile-pic"
+                        />
+                    )}
                     <span className="executive-tag">BUSINESS & PARTNERSHIPS</span>
                     <h1 className="mediakit-title">MEDIA <span>KIT</span></h1>
                     <p className="mediakit-subtitle">

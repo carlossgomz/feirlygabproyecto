@@ -8,7 +8,7 @@ import { getBroadcasterId, getLiveStatus } from '../lib/twitch.js';
 import { recordViewerSample } from '../lib/redis.js';
 
 export default async function handler(req, res) {
-  const { TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET, TWITCH_CHANNEL_LOGIN, CRON_SECRET } = process.env;
+  const { TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET, TWITCH_CHANNEL_LOGIN, CRON_SECRET, CRON_INTERVAL_MINUTES } = process.env;
 
   // Protección simple para que no cualquiera pueda llamar este endpoint
   // y llenarte Redis de basura.
@@ -26,7 +26,10 @@ export default async function handler(req, res) {
     const { isLive, currentViewers } = await getLiveStatus(broadcasterId, TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET);
 
     if (isLive) {
-      await recordViewerSample(currentViewers);
+      // Si no defines CRON_INTERVAL_MINUTES en Vercel, asume 5 minutos
+      // (ajusta esto al intervalo real que configuraste en cron-job.org).
+      const intervalMinutes = CRON_INTERVAL_MINUTES ? Number(CRON_INTERVAL_MINUTES) : 5;
+      await recordViewerSample(currentViewers, { intervalMinutes });
     }
 
     res.status(200).json({ recorded: isLive, currentViewers });
