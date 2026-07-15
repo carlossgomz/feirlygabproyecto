@@ -68,7 +68,7 @@ export default function MediaKit() {
     // promedio real. Si todavía no hay muestras (recién configurado, o
     // pocos días desde que activaste el cron), caemos a una cifra fija
     // editable a mano mientras se acumula historial suficiente.
-    const AVERAGE_VIEWERS_MANUAL = '2.5K+';
+    const AVERAGE_VIEWERS_MANUAL = '⏳ sin datos aún';
     const hasRealAverage = twitchStats && twitchStats.avgViewers !== null && twitchStats.avgSampleCount > 0;
 
     const audienceLabel = twitchStats?.isLive ? 'Espectadores en Vivo (real)' : 'Audiencia Twitch Promedio';
