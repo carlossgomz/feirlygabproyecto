@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './footer.css';
-import logo from '../assets/logo.png';
+import logo from '../../assets/logo.png';
 
 export default function Footer() {
     return (
