@@ -210,6 +210,12 @@
     box-shadow: 0 0 15px rgba(199, 125, 255, 0.3);
 }
 
+.hero-x:hover {
+    border-color: black;
+    color: black;
+    box-shadow: 0 0 15px rgba(199, 125, 255, 0.3);
+}
+
 /* Panel de Enlaces: ahora debajo de los botones, en la misma columna de texto */
 
 .brand-header-marker {
@@ -346,6 +352,11 @@
     box-shadow: 0 0 20px rgba(199, 125, 255, 0.3);
 }
 
+.hero-x:hover {
+    border-color: black;
+    box-shadow: 0 0 20px rgba(199, 125, 255, 0.3);
+}
+
 .hero-discord:hover .matrix-icon {
     color: var(--neon-cyan);
     filter: drop-shadow(0 0 8px var(--neon-cyan));
@@ -353,6 +364,16 @@
 
 .hero-discord:hover .matrix-handle {
     color: var(--neon-cyan);
+    font-weight: 700;
+}
+
+.hero-x:hover .matrix-icon {
+    color: black;
+    filter: drop-shadow(0 0 8px var(--neon-cyan));
+}
+
+.hero-x:hover .matrix-handle {
+    color: black;
     font-weight: 700;
 }
 

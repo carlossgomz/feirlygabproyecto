@@ -97,6 +97,8 @@
     /* Se adaptará a su tamaño natural */
     object-fit: contain;
     display: block;
+    transform: translateY(20px);
+    /* Bajamos la imagen unos pocos píxeles */
 }
 
 .sobremi-quote-block {

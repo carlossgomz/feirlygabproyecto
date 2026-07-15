@@ -10,7 +10,7 @@ export default function Hero() {
         {
             name: 'TikTok',
             handle: '300K+ Fans',
-            url: 'https://tiktok.com',
+            url: 'https://www.tiktok.com/@feirlygab',
             color: 'hero-tiktok',
             icon: (
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
@@ -21,7 +21,7 @@ export default function Hero() {
         {
             name: 'Instagram',
             handle: '80K+ Followers',
-            url: 'https://instagram.com',
+            url: 'https://www.instagram.com/fairlygab/',
             color: 'hero-instagram',
             icon: (
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
@@ -34,13 +34,24 @@ export default function Hero() {
         {
             name: 'Discord',
             handle: 'Cyber-Espacio',
-            url: 'https://discord.com',
+            url: 'https://discord.gg/UqdatRpaCz',
             color: 'hero-discord',
             icon: (
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
                     <path d="M18.5 4c-1.2-.8-2.6-1.3-4-1.5-.1 0-.2 0-.3.1-.2.3-.4.7-.5 1.1-1.5-.2-3-.2-4.5 0-.1-.4-.3-.8-.5-1.1 0-.1-.2-.1-.3-.1-1.4.2-2.8.7-4 1.5-.1 0-.1.1-.1.2-2.5 3.8-3.2 7.5-2.9 11.2 0 .1.1.2.2.3 1.7 1.2 3.3 2 4.9 2.5.1 0 .2 0 .3-.1.4-.5.7-1.1 1-1.7 0-.1 0-.2-.1-.3-.5-.2-1.1-.4-1.6-.7-.1 0-.1-.2 0-.3.1-.1.2-.2.3-.3 3.3 1.5 6.9 1.5 10.2 0 .1.1.2.2.3.3 0 .1.1.2 0 .3-.5.3-1 .5-1.6.7-.1.1-.1.2-.1.3.3.6.6 1.2 1 1.7.1.1.2.1.3.1 1.6-.5 3.2-1.3 4.9-2.5.1-.1.1-.2.2-.3.4-4.3-.7-8-2.9-11.2 0-.1-.1-.2-.2-.2z" />
                     <circle cx="9.5" cy="11.5" r="1.5" fill="currentColor" />
                     <circle cx="14.5" cy="11.5" r="1.5" fill="currentColor" />
+                </svg>
+            )
+        },
+        {
+            name: 'X / Twitter',
+            handle: 'Cyber-Espacio',
+            url: 'https://x.com/FairlyGab',
+            color: 'hero-x',
+            icon: (
+                <svg viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
             )
         }
@@ -64,8 +75,7 @@ export default function Hero() {
 
                     <img src={gabWordmark} alt="FeirlyGab" className="hero-brand-title" />
                     <p className="hero-bio">
-                        Streamer & Content Creator enfocada en esports, cultura geek y tecnología.
-                        Bienvenidos al Cyber-Hub oficial.
+                        Feirlygab, cuyo nombre real es Gabriella Suárez, es una destacada creadora de contenido y streamer venezolana, considerada actualmente como una de las figuras más influyentes en el ámbito del streaming dentro de su país.
                     </p>
 
                     {/* BOTONES FLOTANTES DE REDES SOCIALES */}

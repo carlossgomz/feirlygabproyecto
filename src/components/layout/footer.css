@@ -1,7 +1,7 @@
 .cyber-footer {
     position: relative;
     background-color: #050308;
-    padding: 60px 20px 20px 20px;
+    padding: 60px 4vw 20px 4vw;
     margin-top: auto;
     /* Empuja el footer abajo si hay poco contenido */
 }
@@ -35,10 +35,11 @@
 }
 
 .footer-container {
-    max-width: 1100px;
+    max-width: 1400px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: 1fr auto;
+    align-items: start;
     gap: 60px;
     padding-bottom: 40px;
 }
@@ -78,6 +79,11 @@
 }
 
 /* Secciones de Menús */
+.footer-links-section {
+    padding-right: 0;
+    justify-self: end;
+}
+
 .footer-links-section h4 {
     color: white;
     font-size: 1rem;
@@ -119,7 +125,7 @@
 }
 
 .footer-bottom-content {
-    max-width: 1100px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -152,6 +158,13 @@
     .footer-container {
         grid-template-columns: 1fr;
         gap: 30px;
+        padding-bottom: 40px;
+    }
+
+    .footer-links-section {
+        padding-right: 0;
+        justify-self: center;
+        text-align: center;
     }
 
     .footer-bottom-content {

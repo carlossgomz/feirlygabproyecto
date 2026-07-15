@@ -1,5 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './mediakit.css';
+
+// Al estar la función serverless en el mismo proyecto de Vercel (carpeta
+// /api), la ruta es relativa: no hace falta poner el dominio completo.
+const STATS_API_URL = '/api/twitch-stats';
+
+// Valores de respaldo por si la API aún no cargó o falla, para que la
+// página nunca se vea "rota" de cara a una marca.
+const FALLBACK_STATS = {
+    followers: '500K+',
+    viewers: '2.5K+',
+};
+
+function formatNumber(n) {
+    if (n === undefined || n === null) return '—';
+    if (n >= 1000) return `${(n / 1000).toFixed(1)}K+`;
+    return `${n}`;
+}
 
 export default function MediaKit() {
     const [formData, setFormData] = useState({
@@ -10,10 +27,56 @@ export default function MediaKit() {
     });
     const [submitted, setSubmitted] = useState(false);
 
-    // Estadísticas reales simuladas para el perfil de la streamer
+    // Estado de estadísticas reales de Twitch
+    const [twitchStats, setTwitchStats] = useState(null);
+    const [statsError, setStatsError] = useState(false);
+
+    useEffect(() => {
+        let cancelled = false;
+
+        async function loadStats() {
+            try {
+                const res = await fetch(STATS_API_URL);
+                if (!res.ok) throw new Error(`Respuesta no válida (${res.status})`);
+                const data = await res.json();
+                if (!cancelled) {
+                    setTwitchStats(data);
+                    setStatsError(false);
+                }
+            } catch (err) {
+                console.error('No se pudieron cargar las estadísticas de Twitch:', err);
+                if (!cancelled) setStatsError(true);
+            }
+        }
+
+        loadStats();
+        // Refresca automáticamente cada 5 minutos mientras alguien tenga la página abierta
+        const interval = setInterval(loadStats, 5 * 60 * 1000);
+
+        return () => {
+            cancelled = true;
+            clearInterval(interval);
+        };
+    }, []);
+
+    // Estadísticas mostradas: reales cuando están disponibles, fallback si no
+    const followersValue = twitchStats
+        ? formatNumber(twitchStats.followers)
+        : (statsError ? FALLBACK_STATS.followers : '...');
+
+    // Twitch no expone un endpoint de "promedio histórico" gratuito, así que
+    // cuando el canal está offline mostramos una cifra de referencia fija
+    // (edítala a mano con tu dato real de audiencia promedio). Cuando el
+    // canal está en vivo, mostramos el viewer count real y actual.
+    const AVERAGE_VIEWERS_MANUAL = '2.5K+';
+    const audienceLabel = twitchStats?.isLive ? 'Espectadores en Vivo (real)' : 'Audiencia Twitch Promedio';
+    const audienceValue = twitchStats
+        ? (twitchStats.isLive ? formatNumber(twitchStats.currentViewers) : AVERAGE_VIEWERS_MANUAL)
+        : (statsError ? FALLBACK_STATS.viewers : '...');
+
     const stats = [
-        { id: 1, label: 'Seguidores Totales', value: '500K+', color: 'purple' },
-        { id: 2, label: 'Audiencia Twitch Promedio', value: '2.5K+', color: 'cyan' },
+        { id: 1, label: 'Seguidores en Twitch', value: followersValue, color: 'purple' },
+        { id: 2, label: audienceLabel, value: audienceValue, color: 'cyan' },
         { id: 3, label: 'Impresiones Mensuales', value: '4M+', color: 'pink' },
         { id: 4, label: 'Engagement Rate', value: '18.4%', color: 'white' }
     ];
@@ -50,6 +113,11 @@ export default function MediaKit() {
                         </div>
                     ))}
                 </div>
+                {twitchStats && (
+                    <p className="stats-updated-note">
+                        Estadísticas de Twitch actualizadas automáticamente · {new Date(twitchStats.updatedAt).toLocaleString('es-ES')}
+                    </p>
+                )}
 
                 {/* Bloque de Contacto y Demografía */}
                 <div className="business-content">
