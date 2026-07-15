@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/sectiondivider.css';
 import './about.css';
-import gabimage2 from './assets/buena1.png';
+import gabimage2 from '../assets/buena1.png';
 
 export default function SobreMi() {
 
