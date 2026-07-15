@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/sectiondivider.css';
 import './about.css';
+import gabimage2 from '../assets/buena1.png';
 
 export default function SobreMi() {
 
@@ -16,7 +17,7 @@ export default function SobreMi() {
                 <section className="sobremi-hero-layout">
                     {/* Foto a la izquierda */}
                     <div className="sobremi-photo-wrapper">
-                        <img src="src/assets/buena1.png" alt="Feirlygab" className="sobremi-photo" />
+                        <img src={gabimage2} alt="Feirlygab" className="sobremi-photo" />
                     </div>
 
                     {/* Historia a la derecha */}
