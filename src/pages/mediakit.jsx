@@ -64,14 +64,18 @@ export default function MediaKit() {
         ? formatNumber(twitchStats.followers)
         : (statsError ? FALLBACK_STATS.followers : '...');
 
-    // Twitch no expone un endpoint de "promedio histórico" gratuito, así que
-    // cuando el canal está offline mostramos una cifra de referencia fija
-    // (edítala a mano con tu dato real de audiencia promedio). Cuando el
-    // canal está en vivo, mostramos el viewer count real y actual.
+    // Cuando Redis ya acumuló muestras (avgSampleCount > 0), usamos el
+    // promedio real. Si todavía no hay muestras (recién configurado, o
+    // pocos días desde que activaste el cron), caemos a una cifra fija
+    // editable a mano mientras se acumula historial suficiente.
     const AVERAGE_VIEWERS_MANUAL = '2.5K+';
+    const hasRealAverage = twitchStats && twitchStats.avgViewers !== null && twitchStats.avgSampleCount > 0;
+
     const audienceLabel = twitchStats?.isLive ? 'Espectadores en Vivo (real)' : 'Audiencia Twitch Promedio';
     const audienceValue = twitchStats
-        ? (twitchStats.isLive ? formatNumber(twitchStats.currentViewers) : AVERAGE_VIEWERS_MANUAL)
+        ? (twitchStats.isLive
+            ? formatNumber(twitchStats.currentViewers)
+            : (hasRealAverage ? formatNumber(twitchStats.avgViewers) : AVERAGE_VIEWERS_MANUAL))
         : (statsError ? FALLBACK_STATS.viewers : '...');
 
     const stats = [
