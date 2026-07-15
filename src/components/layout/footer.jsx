@@ -11,7 +11,7 @@ export default function Footer() {
                 {/* Columna 1: Marca Principal */}
                 <div className="footer-brand-section">
                     <Link to="/" className="footer-logo">
-                        <img src="src/assets/logo.png" alt="Feirlygab" className="footer-logo-img" />
+                        <img src={logo} alt="Feirlygab" className="footer-logo-img" />
                     </Link>
                 </div>
 
