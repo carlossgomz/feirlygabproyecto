@@ -1,0 +1,247 @@
+.eventos-page {
+    min-height: 100vh;
+    background-color: transparent;
+    padding: 120px 20px 60px 20px;
+}
+
+.eventos-container {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.eventos-header {
+    text-align: center;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.back-btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    transition: all 0.25s ease;
+}
+
+.back-btn:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.eventos-header h1 {
+    font-size: 2.8rem;
+    font-weight: 950;
+    margin-top: 20px;
+}
+
+.eventos-header h1 span {
+    color: var(--neon-purple);
+    text-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
+}
+
+.eventos-header p {
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-size: 1.05rem;
+}
+
+/* Estructura de Línea de Tiempo */
+.eventos-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+}
+
+.evento-timeline-card {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    background: rgba(19, 15, 38, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.evento-timeline-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 245, 212, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Bloque de Fecha */
+.evento-date-block {
+    background: rgba(0, 245, 212, 0.03);
+    border-right: 1px solid rgba(255, 255, 255, 0.03);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.ev-date {
+    font-size: 1.8rem;
+    font-weight: 950;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px rgba(0, 245, 212, 0.2);
+    line-height: 1;
+}
+
+.ev-time {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+}
+
+/* Bloque de Información */
+.evento-info-block {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.evento-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ev-type-tag {
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+.ev-status {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.ev-status.confirmado {
+    color: #00ff66;
+}
+
+.ev-status.próximamente {
+    color: #ffaa00;
+}
+
+.ev-status.planeado {
+    color: #00a2ff;
+}
+
+.evento-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: white;
+}
+
+.evento-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.evento-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.85rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    width: fit-content;
+    padding: 8px 16px;
+    border-radius: 6px;
+    margin-top: 5px;
+    transition: all 0.25s ease;
+}
+
+.evento-cta-btn:hover {
+    background: rgba(145, 70, 255, 0.15);
+    border-color: #9146FF;
+    color: white;
+    box-shadow: 0 0 10px rgba(145, 70, 255, 0.2);
+}
+
+/* Móvil */
+@media (max-width: 650px) {
+    .back-btn {
+        position: relative;
+        display: block;
+        margin: 0 auto 20px auto;
+        width: fit-content;
+    }
+
+    .evento-timeline-card {
+        grid-template-columns: 1fr;
+    }
+
+    .evento-date-block {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        padding: 15px;
+    }
+
+    /* Agrupa los tags para que no choquen */
+    .evento-tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    /* Nuevas etiquetas de modalidad */
+    .ev-modality-tag {
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 4px;
+        letter-spacing: 0.5px;
+    }
+
+    /* Estilo para eventos Presenciales (Morado Neón del canal) */
+    .ev-modality-tag.presencial {
+        background: rgba(145, 70, 255, 0.15);
+        border: 1px solid rgba(145, 70, 255, 0.4);
+        color: #b98fff;
+    }
+
+    /* Estilo para eventos Online (Verde/Cian digital) */
+    .ev-modality-tag.online {
+        background: rgba(0, 245, 212, 0.1);
+        border: 1px solid rgba(0, 245, 212, 0.3);
+        color: #00f5d4;
+    }
+
+    /* Línea indicadora de ubicación */
+    .evento-location {
+        font-size: 0.85rem;
+        color: #e2e1e6;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 6px 12px;
+        border-radius: 6px;
+        width: fit-content;
+        border-left: 3px solid #9146ff;
+        /* Línea decorativa morada */
+    }
+}

@@ -1,0 +1,531 @@
+.hero-viewport {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    padding: 120px 40px 0px 40px;
+    overflow: hidden;
+}
+
+/* Efectos de luces de fondo (Glows) */
+.hero-neon-glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(140px);
+    pointer-events: none;
+    opacity: 0.15;
+}
+
+.pink-glow {
+    top: -10%;
+    left: -10%;
+    background: var(--neon-pink);
+}
+
+.cyan-glow {
+    bottom: -10%;
+    right: -10%;
+    background: var(--neon-cyan);
+}
+
+.hero-content-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    position: relative;
+    /* asegura que el texto quede siempre sobre la foto de fondo */
+}
+
+/* Lado Izquierdo: Información */
+.hero-profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.live-badge-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(176, 38, 255, 0.12);
+    border: 1px solid rgba(176, 38, 255, 0.35);
+    padding: 6px 14px;
+    border-radius: 50px;
+    width: fit-content;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--neon-pink);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--neon-pink);
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes twitch-shake {
+
+    0%,
+    100% {
+        transform: translateY(-2px);
+    }
+
+    50% {
+        transform: translateY(-5px) scale(1.02);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .4;
+    }
+}
+
+.live-text {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--neon-pink);
+    letter-spacing: 1px;
+}
+
+.hero-brand-title {
+    align-self: flex-start;
+    /* evita que el flex-container (hero-profile-info) lo estire al ancho completo */
+    width: auto;
+    max-width: 100%;
+    max-height: 130px;
+    /* controla el alto directamente; bajá este número si todavía se ve muy estirado */
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 25px rgba(157, 78, 221, 0.5));
+}
+
+.hero-bio {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    line-height: 1.6;
+    max-width: 550px;
+}
+
+.hero-cta-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.btn-primary-neon {
+    background: linear-gradient(135deg, var(--neon-pink), #6a0dad);
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    box-shadow: 0 0 20px rgba(176, 38, 255, 0.35);
+    transition: all 0.3s ease;
+}
+
+.btn-primary-neon:hover {
+    animation: twitch-shake 0.5s ease-in-out;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 25px rgba(176, 38, 255, 0.55);
+}
+
+.btn-secondary-dark {
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary-dark:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-social-buttons {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.social-btn {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Efectos de color al pasar el ratón */
+.hero-twitch:hover {
+    border-color: #a970ff;
+    color: #a970ff;
+    box-shadow: 0 0 15px rgba(169, 112, 255, 0.3);
+}
+
+.hero-tiktok:hover {
+    border-color: #00f2fe;
+    color: #00f2fe;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+}
+
+.hero-instagram:hover {
+    border-color: var(--neon-pink);
+    color: var(--neon-pink);
+    box-shadow: 0 0 15px rgba(176, 38, 255, 0.3);
+}
+
+.hero-discord:hover {
+    border-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(199, 125, 255, 0.3);
+}
+
+/* Panel de Enlaces: ahora debajo de los botones, en la misma columna de texto */
+
+.brand-header-marker {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+    z-index: 5;
+    pointer-events: none;
+    animation: floatingLogo 4s infinite ease-in-out;
+}
+
+.brand-header-marker img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+@keyframes floatingLogo {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.matrix-title {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.matrix-links-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* siempre 4 columnas = una sola fila, nunca se apilan en 2 filas */
+    gap: 12px;
+}
+
+.matrix-icon {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.25s ease, filter 0.25s ease;
+}
+
+.matrix-icon svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.matrix-name {
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.2;
+    color: white;
+}
+
+.matrix-handle {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    line-height: 1.2;
+    color: var(--text-muted);
+}
+
+.matrix-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+}
+
+.matrix-arrow {
+    color: rgba(255, 255, 255, 0.2);
+    transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.hero-twitch:hover {
+    border-color: #a970ff;
+    box-shadow: 0 0 20px rgba(169, 112, 255, 0.3);
+}
+
+.hero-twitch:hover .matrix-icon {
+    color: #a970ff;
+    filter: drop-shadow(0 0 8px #a970ff);
+}
+
+.hero-twitch:hover .matrix-handle {
+    color: #c8a2ff;
+    font-weight: 700;
+}
+
+.hero-tiktok:hover {
+    border-color: #00f2fe;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);
+}
+
+.hero-tiktok:hover .matrix-icon {
+    color: #00f2fe;
+    filter: drop-shadow(0 0 8px #00f2fe);
+}
+
+.hero-tiktok:hover .matrix-handle {
+    color: #4facfe;
+    font-weight: 700;
+}
+
+.hero-instagram:hover {
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 20px rgba(176, 38, 255, 0.3);
+}
+
+.hero-instagram:hover .matrix-icon {
+    color: var(--neon-pink);
+    filter: drop-shadow(0 0 8px var(--neon-pink));
+}
+
+.hero-instagram:hover .matrix-handle {
+    color: var(--neon-pink);
+    font-weight: 700;
+}
+
+.hero-discord:hover {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 20px rgba(199, 125, 255, 0.3);
+}
+
+.hero-discord:hover .matrix-icon {
+    color: var(--neon-cyan);
+    filter: drop-shadow(0 0 8px var(--neon-cyan));
+}
+
+.hero-discord:hover .matrix-handle {
+    color: var(--neon-cyan);
+    font-weight: 700;
+}
+
+/* ==========================================================
+   FOTO DE FONDO DE LA CREADORA (flotante, no desplaza nada)
+   ¡OJO! Estas reglas viven FUERA de cualquier @media para que
+   apliquen siempre. Antes estaban metidas dentro del media
+   query de 992px, así que en desktop no tenían position:absolute
+   y por eso la imagen empujaba el resto del contenido.
+   ========================================================== */
+
+.hero-avatar-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-avatar-img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(145, 70, 255, 0.3));
+    animation: floatAvatar 6s ease-in-out infinite;
+}
+
+@keyframes floatAvatar {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Contenedor del Avatar de Fondo */
+.hero-background-avatar {
+    position: absolute;
+    /* absolute en vez de fixed: queda contenida dentro del hero y no tapa otras secciones al scrollear */
+    right: 0;
+    /* pegada completamente al borde derecho del hero */
+    bottom: -50px;
+    /* la bajamos un poco para que no se vea "flotando" sobre el borde */
+    width: auto;
+    max-width: 44vw;
+    height: 90%;
+    max-height: 85vh;
+    z-index: 1;
+    /* por encima del fondo/luces, detrás del texto (que tiene z-index:10) */
+    pointer-events: none;
+    /* se puede clickear a través de ella */
+    opacity: 0.85;
+    /* Degradado de máscara: se desvanece suavemente en su borde izquierdo,
+       que es donde se puede llegar a cruzar con el texto/panel */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 30%);
+    mask-image: linear-gradient(to right, transparent 0%, black 30%);
+    transition: all 0.3s ease;
+}
+
+.hero-background-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 0 35px rgba(145, 70, 255, 0.35));
+    -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 98%);
+    mask-image: linear-gradient(to bottom, black 75%, transparent 98%);
+}
+
+/* Responsive Layout */
+@media (max-width: 992px) {
+    .hero-content-wrapper {
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-profile-info {
+        align-items: center;
+    }
+
+    .hero-brand-title {
+        align-self: center;
+        max-height: 100px;
+        width: auto;
+        margin: 0 auto;
+        /* centrado junto con el resto del contenido en esta escala */
+    }
+
+    /* Nuevo bloque global: ponlo debajo de .hero-linktree-matrix */
+
+
+    .matrix-title {
+        text-align: center;
+    }
+
+    .matrix-links-grid {
+        gap: 8px;
+    }
+
+    .matrix-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .matrix-arrow {
+        display: none;
+        /* sin espacio para la flecha en tarjetas angostas */
+    }
+
+    .matrix-name {
+        font-size: 0.85rem;
+    }
+
+    .matrix-handle {
+        font-size: 0.68rem;
+    }
+
+    /* Escala intermedia (tablets): más chica y sutil que en desktop,
+       porque el layout pasa a una sola columna y hay menos espacio libre */
+    .hero-background-avatar {
+        height: 60%;
+        /* Reducimos la escala vertical en tablets */
+        max-height: 50vh;
+        width: auto;
+        right: 0;
+        bottom: -20px;
+        opacity: 0.35;
+        /* Opacidad baja para que no tape el texto que ahora se centra */
+    }
+}
+
+/* Escala mobile (celulares grandes/tablets chicas): la centramos y la hacemos más sutil
+   para que no compita con el texto */
+@media (max-width: 768px) {
+    .hero-background-avatar {
+        height: auto;
+        width: 320px;
+        max-width: 80vw;
+        left: 50%;
+        right: auto;
+        /* Reseteamos el right de escritorio para poder centrar */
+        transform: translateX(-50%);
+        opacity: 0.2;
+        bottom: -20px;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+}
+
+/* Escala mobile chico (celulares angostos): la reducimos un poco más para
+   que nunca ocupe más ancho del que puede manejar la pantalla */
+@media (max-width: 480px) {
+    .hero-background-avatar {
+        width: 240px;
+        max-width: 75vw;
+        opacity: 0.15;
+        bottom: -20px;
+    }
+
+    .matrix-links-grid {
+        gap: 6px;
+    }
+
+    .matrix-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .matrix-handle {
+        display: none;
+        /* en celulares muy angostos solo dejamos el nombre de la red */
+    }
+
+}

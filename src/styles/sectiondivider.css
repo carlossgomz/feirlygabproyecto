@@ -1,0 +1,46 @@
+.section-divider {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    /* Necesario para que las púas no se corten */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    /* Restauramos el margen original a 0 para que quede pegado arriba */
+    margin: -40px auto 0 auto;
+    overflow: visible;
+    z-index: 10;
+}
+
+/* El alambre de púas con el espaciado amplio */
+.section-divider::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 100%;
+    transform: translateY(-50%);
+
+    /* SVG optimizado: 1 nudo de púas cada 300px */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 80' width='300' height='80'%3E%3Cg fill='%239d4ede' stroke='%239d4ede' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M 0,38 C 25,24 50,52 75,38 C 100,24 125,52 150,38 C 175,24 200,52 225,38 C 250,24 275,52 300,38' fill='none' stroke-width='4' /%3E%3Cpath d='M 0,42 C 25,56 50,28 75,42 C 100,56 125,28 150,42 C 175,56 200,28 225,42 C 250,56 275,28 300,42' fill='none' stroke-width='4' /%3E%3Cpath d='M 147,35 L 125,15 C 127,22 135,30 143,34 Z' /%3E%3Cpath d='M 143,45 L 123,62 C 130,56 138,48 147,45 Z' /%3E%3Cpath d='M 153,34 L 175,16 C 169,22 161,30 153,35 Z' /%3E%3Cpath d='M 151,44 L 173,64 C 166,56 159,48 151,43 Z' /%3E%3Crect x='143' y='32' width='14' height='16' rx='3' stroke-width='2' /%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+
+    /* Desvanecimiento elegante hacia los bordes */
+    -webkit-mask-image: linear-gradient(90deg,
+            transparent 0%,
+            black 15%,
+            black 85%,
+            transparent 100%);
+    mask-image: linear-gradient(90deg,
+            transparent 0%,
+            black 15%,
+            black 85%,
+            transparent 100%);
+
+    /* Glow neón morado */
+    filter: drop-shadow(0 0 6px rgba(157, 78, 221, 0.95));
+    opacity: 0.9;
+}

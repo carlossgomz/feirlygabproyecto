@@ -1,0 +1,85 @@
+.socials-section {
+    padding: 60px 20px;
+    background: var(--bg-dark-primary);
+}
+
+.socials-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title-neon {
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title-neon span {
+    color: var(--neon-purple);
+    text-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
+}
+
+.socials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.social-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--bg-dark-secondary);
+    border: 1px solid var(--glass-border);
+    padding: 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-card:hover {
+    transform: translateY(-4px);
+}
+
+.social-card.twitch:hover {
+    border-color: #9146FF;
+    box-shadow: 0 0 15px rgba(145, 70, 255, 0.3);
+}
+
+.social-card.tiktok:hover {
+    border-color: #ff0050;
+    box-shadow: 0 0 15px rgba(255, 0, 80, 0.3);
+}
+
+.social-card.instagram:hover {
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
+}
+
+.social-card.discord:hover {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 245, 212, 0.3);
+}
+
+.social-icon-box {
+    font-size: 1.8rem;
+}
+
+.social-info h3 {
+    font-size: 1.2rem;
+    color: var(--text-main);
+    margin-bottom: 2px;
+}
+
+.handle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.count-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--neon-cyan);
+}

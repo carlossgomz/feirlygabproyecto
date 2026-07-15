@@ -1,0 +1,63 @@
+.scroll-to-top-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 46px;
+    height: 46px;
+    /* Fondo oscuro semi-transparente que combina con el Hub */
+    background-color: rgba(19, 15, 38, 0.85);
+    /* Borde morado sutil inicial */
+    border: 1px solid rgba(145, 70, 255, 0.4);
+    border-radius: 50%;
+    /* Color del ícono en el morado característico de Twitch */
+    color: #9146ff;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    backdrop-filter: blur(8px);
+
+    /* Estado inicial oculto con transición suave */
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Cuando se activa mediante el scroll */
+.scroll-to-top-btn.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Efecto Hover: Se ilumina por completo con la identidad del canal */
+.scroll-to-top-btn:hover {
+    background-color: #9146ff;
+    color: #ffffff;
+    border-color: #9146ff;
+    /* Brillo neón morado envolvente */
+    box-shadow: 0 0 20px rgba(145, 70, 255, 0.6);
+    transform: translateY(-3px);
+}
+
+.arrow-up {
+    transition: transform 0.2s ease;
+}
+
+.scroll-to-top-btn:hover .arrow-up {
+    transform: translateY(-2px);
+}
+
+/* Ajuste responsivo para celulares */
+@media (max-width: 768px) {
+    .scroll-to-top-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+    }
+}

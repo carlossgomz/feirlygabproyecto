@@ -1,0 +1,285 @@
+.feed-viewport {
+    position: relative;
+    padding: 100px 40px;
+    overflow: hidden;
+}
+
+/* Glows de fondo, mismo lenguaje visual que el Hero pero invertidos de lado
+   para que las secciones no se sientan repetidas al hacer scroll */
+.feed-glow {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(140px);
+    pointer-events: none;
+    opacity: 0.12;
+}
+
+.feed-glow-purple {
+    top: -5%;
+    right: -8%;
+    background: var(--neon-purple);
+}
+
+.feed-glow-cyan {
+    bottom: -10%;
+    left: -8%;
+    background: var(--neon-cyan);
+}
+
+.feed-content-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Encabezado de la sección */
+.feed-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+    margin: 0 auto 50px;
+    max-width: 480px;
+}
+
+.feed-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(0, 245, 212, 0.1);
+    border: 1px solid rgba(0, 245, 212, 0.3);
+    padding: 6px 16px;
+    border-radius: 50px;
+    width: fit-content;
+}
+
+.feed-badge-text {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--neon-cyan);
+    letter-spacing: 1.5px;
+}
+
+.feed-title {
+    font-size: 2.4rem;
+    color: var(--text-main);
+}
+
+.feed-subtitle {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+/* Feed vertical, una sola columna centrada — mismo scroll que Facebook/Instagram */
+.feed-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+/* Tarjeta de post — glassmorphism, igual lenguaje que el resto del sitio */
+.feed-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feed-card:hover {
+    border-color: rgba(157, 78, 221, 0.5);
+    box-shadow: 0 12px 32px -12px rgba(157, 78, 221, 0.35);
+}
+
+/* Encabezado de cada post, tipo Facebook: avatar + nombre + fecha */
+.feed-card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 18px 0;
+}
+
+.feed-card-avatar {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.feed-card-header-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+}
+
+.feed-card-author {
+    color: var(--text-main);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.feed-card-date {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+}
+
+.feed-card-image {
+    width: 100%;
+    max-height: 520px;
+    overflow: hidden;
+    background: var(--bg-dark-secondary);
+    margin-top: 14px;
+}
+
+.feed-card-image img {
+    width: 100%;
+    height: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    display: block;
+}
+
+.feed-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 14px 18px 18px;
+}
+
+.feed-card-text {
+    color: var(--text-main);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 12px 18px 0;
+}
+
+/* Cuando el post es solo texto, le damos más presencia con la tipografía
+   de encabezado, ya que no hay imagen que sostenga la tarjeta */
+.feed-card-text.feed-card-text-only {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    line-height: 1.5;
+    padding: 16px 18px 4px;
+}
+
+.feed-card-meta {
+    display: flex;
+    align-items: center;
+}
+
+.feed-card-likes {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--neon-pink);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.feed-card-likes svg {
+    filter: drop-shadow(0 0 6px rgba(255, 0, 127, 0.5));
+}
+
+/* Comentarios de la comunidad */
+.feed-card-comments {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style: none;
+    padding-top: 12px;
+    border-top: 1px solid var(--glass-border);
+}
+
+.feed-comment {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.feed-comment-avatar {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.feed-comment-text {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+.feed-comment-author {
+    color: var(--neon-cyan);
+    font-weight: 700;
+}
+
+/* Botón "Ver más" — mismo estilo que el CTA principal del Hero */
+.feed-cta-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+}
+
+.feed-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.feed-cta-arrow {
+    transition: transform 0.25s ease;
+}
+
+.feed-cta-btn:hover .feed-cta-arrow {
+    transform: translateX(4px);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .feed-viewport {
+        padding: 70px 20px;
+    }
+
+    .feed-title {
+        font-size: 1.9rem;
+    }
+
+    .feed-card-image {
+        max-height: 420px;
+    }
+
+    .feed-card-image img {
+        max-height: 420px;
+    }
+}

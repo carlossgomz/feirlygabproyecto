@@ -1,111 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&display=swap');
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  /* Paleta de Colores Cyber-Gamer */
+  --bg-dark-primary: #0a0813;
+  /* Fondo base ultra oscuro */
+  --bg-dark-secondary: #130f26;
+  /* Fondo de tarjetas / contenedores */
+  --neon-purple: #9d4edd;
+  /* Violeta neón principal */
+  --neon-pink: #ff007f;
+  /* Fucsia de acento */
+  --neon-cyan: #00f5d4;
+  /* Cian para estados activos/en vivo */
+  --text-main: #f8f9fa;
+  /* Blanco roto para lectura cómoda */
+  --text-muted: #a0a5c0;
+  /* Gris azulado para textos secundarios */
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  /* Efecto de cristal (Glassmorphism) */
+  --glass-bg: rgba(19, 15, 38, 0.7);
+  --glass-border: rgba(157, 78, 221, 0.2);
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  /* Tipografía de títulos */
+  --font-heading: 'Cinzel', serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 body {
-  margin: 0;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(40, 15, 55, 0.12), transparent 50%),
+    radial-gradient(ellipse at 75% 60%, rgba(25, 10, 50, 0.14), transparent 55%),
+    radial-gradient(ellipse at 50% 85%, rgba(30, 8, 40, 0.1), transparent 50%),
+    linear-gradient(180deg, #030204 0%, #050308 40%, #020103 100%);
+  color: var(--text-main);
+  overflow-x: hidden;
+  position: relative;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+/* Vi\u00f1eta: oscurece a\u00fan m\u00e1s los bordes para un encierro g\u00f3tico */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 25% 35%, rgba(120, 60, 170, 0.1) 0%, transparent 38%),
+    radial-gradient(circle at 70% 25%, rgba(60, 30, 100, 0.09) 0%, transparent 42%),
+    radial-gradient(circle at 15% 75%, rgba(30, 20, 70, 0.1) 0%, transparent 40%),
+    radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.55) 100%);
+  filter: blur(50px);
+  mix-blend-mode: screen;
+  pointer-events: none;
 }
 
+/* Estrellas: fijas, no se repiten al cambiar de p\u00e1gina */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, #fff, transparent),
+    radial-gradient(1px 1px at 30% 60%, #fff, transparent),
+    radial-gradient(1px 1px at 50% 15%, #fff, transparent),
+    radial-gradient(1px 1px at 70% 45%, #fff, transparent),
+    radial-gradient(1px 1px at 85% 75%, #fff, transparent),
+    radial-gradient(1px 1px at 15% 85%, #fff, transparent),
+    radial-gradient(1px 1px at 95% 25%, #fff, transparent),
+    radial-gradient(1px 1px at 40% 90%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 20% 40%, #d8c8e8, transparent),
+    radial-gradient(1.5px 1.5px at 60% 10%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 80% 60%, #d8c8e8, transparent),
+    radial-gradient(2px 2px at 25% 25%, #fff, transparent),
+    radial-gradient(2px 2px at 65% 55%, #fff, transparent),
+    radial-gradient(2px 2px at 45% 85%, #fff, transparent);
+  background-size: 300px 300px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* Tipografía de los títulos de sección (incluye los spans coloreados dentro) */
 h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+h2,
+h3,
+h1 span,
+h2 span,
+h3 span,
+.mediakit-title,
+.hook-header h2,
+.wall-header h2,
+.eventos-header h1,
+.multi-header h1,
+.setup-compact-header h2 {
+  font-family: var(--font-heading);
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+/* Scrollbar personalizado estilo gamer */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
+::-webkit-scrollbar-track {
+  background: var(--bg-dark-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-purple);
   border-radius: 4px;
-  color: var(--text-h);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-pink);
 }

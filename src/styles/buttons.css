@@ -1,0 +1,47 @@
+/* Botones reutilizables en toda la app — antes vivían solo en hero.css,
+   ahora cualquier sección los puede usar sin depender del orden de carga. */
+
+@keyframes twitch-shake {
+
+    0%,
+    100% {
+        transform: translateY(-2px);
+    }
+
+    50% {
+        transform: translateY(-5px) scale(1.02);
+    }
+}
+
+.btn-primary-neon {
+    background: linear-gradient(135deg, var(--neon-pink), #6a0dad);
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    box-shadow: 0 0 20px rgba(176, 38, 255, 0.35);
+    transition: all 0.3s ease;
+}
+
+.btn-primary-neon:hover {
+    animation: twitch-shake 0.5s ease-in-out;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 25px rgba(176, 38, 255, 0.55);
+}
+
+.btn-secondary-dark {
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary-dark:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
