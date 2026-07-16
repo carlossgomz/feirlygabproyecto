@@ -145,24 +145,43 @@ export default function MediaKit() {
                 {/* Bloque de Contacto y Demografía */}
                 <div className="business-content">
 
-                    {/* Información Demográfica */}
+                    {/* Contenido y Clips Destacados */}
                     <div className="demo-info">
-                        <h2 className="section-subtitle">Nuestra <span>Audiencia</span></h2>
+                        <h2 className="section-subtitle">Contenido <span>Destacado</span></h2>
                         <p className="demo-text">
-                            El contenido conecta principalmente con un público joven apasionado por los videojuegos competitivos,
-                            la tecnología y la cultura pop digital.
+                            Transmisiones con enfoque claro y momentos que generan picos reales de interacción y viralidad
+                            dentro de la comunidad.
                         </p>
-                        <div className="bar-chart-wrapper">
-                            <div className="chart-row">
-                                <span className="chart-label">Latinoamérica (VEN, COL, MEX)</span>
-                                <div className="chart-bar"><div className="bar-fill" style={{ width: '75%' }}></div></div>
-                                <span className="chart-percentage">75%</span>
+
+                        {twitchStats?.mainCategory && (
+                            <div className="category-badge">
+                                <div>
+                                    <span className="badge-label">Categoría Principal</span>
+                                    {twitchStats.mainCategory}
+                                </div>
                             </div>
-                            <div className="chart-row">
-                                <span className="chart-label">Edad (18 - 27 años)</span>
-                                <div className="chart-bar"><div className="bar-fill pink" style={{ width: '82%' }}></div></div>
-                                <span className="chart-percentage">82%</span>
-                            </div>
+                        )}
+
+                        <div className="clips-grid">
+                            {twitchStats?.topClips && twitchStats.topClips.length > 0 ? (
+                                twitchStats.topClips.map((clip, i) => (
+                                    <a
+                                        key={i}
+                                        href={clip.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="clip-card"
+                                    >
+                                        <div className="clip-thumb-wrapper">
+                                            <img src={clip.thumbnailUrl} alt={clip.title} className="clip-thumb" />
+                                            <span className="clip-views">▶ {clip.viewCount.toLocaleString('es-ES')}</span>
+                                        </div>
+                                        <p className="clip-title">{clip.title}</p>
+                                    </a>
+                                ))
+                            ) : (
+                                <p className="schedule-empty">Aún no hay clips destacados este mes.</p>
+                            )}
                         </div>
                     </div>
 
