@@ -58,6 +58,31 @@
     padding: 6px 14px;
     border-radius: 50px;
     width: fit-content;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.live-badge-container.is-live {
+    cursor: pointer;
+}
+
+.live-badge-container.is-live:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 15px rgba(176, 38, 255, 0.3);
+}
+
+.live-badge-container.is-offline {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.live-badge-container.is-offline .live-dot {
+    background-color: var(--text-muted);
+    box-shadow: none;
+}
+
+.live-badge-container.is-offline .live-text {
+    color: var(--text-muted);
 }
 
 .live-dot {

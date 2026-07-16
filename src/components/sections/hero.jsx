@@ -1,10 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './hero.css';
 import gabImage from '../../assets/buena2.png';
 import gabWordmark from '../../assets/logo-wordmark.png';
 import gabLogoHeader from '../../assets/logo2.png';
 
+// Mismo endpoint que ya consume el media kit (misma función serverless
+// /api/twitch-stats.js), así que no hace falta duplicar llamadas a Twitch.
+const STATS_API_URL = '/api/twitch-stats';
+
 export default function Hero() {
+    // Estado en vivo real, leído del mismo endpoint que usa el media kit.
+    const [isLive, setIsLive] = useState(false);
+
+    useEffect(() => {
+        let cancelled = false;
+
+        async function loadLiveStatus() {
+            try {
+                const res = await fetch(STATS_API_URL);
+                if (!res.ok) throw new Error(`Respuesta no válida (${res.status})`);
+                const data = await res.json();
+                if (!cancelled) setIsLive(Boolean(data.isLive));
+            } catch (err) {
+                console.error('No se pudo consultar el estado en vivo de Twitch:', err);
+                // Si falla, dejamos el badge en "offline" en vez de mentir que está en vivo.
+            }
+        }
+
+        loadLiveStatus();
+        // Revisa cada 60s si ya entró (o salió) en vivo
+        const interval = setInterval(loadLiveStatus, 60 * 1000);
+
+        return () => {
+            cancelled = true;
+            clearInterval(interval);
+        };
+    }, []);
+
     // Redes clave optimizadas con iconos SVG integrados directamente
     const quickLinks = [
         {
@@ -68,10 +100,22 @@ export default function Hero() {
 
             <div className="hero-content-wrapper">
                 <div className="hero-profile-info">
-                    <div className="live-badge-container">
-                        <span className="live-dot animate-pulse"></span>
-                        <span className="live-text">STREAM ACTIVO</span>
-                    </div>
+                    {isLive ? (
+                        <a
+                            href="https://twitch.tv/feirlygab"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="live-badge-container is-live"
+                        >
+                            <span className="live-dot animate-pulse"></span>
+                            <span className="live-text">STREAM ACTIVO</span>
+                        </a>
+                    ) : (
+                        <div className="live-badge-container is-offline">
+                            <span className="live-dot"></span>
+                            <span className="live-text">OFFLINE</span>
+                        </div>
+                    )}
 
                     <img src={gabWordmark} alt="FeirlyGab" className="hero-brand-title" />
                     <p className="hero-bio">
