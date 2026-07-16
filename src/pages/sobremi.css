@@ -1,0 +1,222 @@
+.sobremi-page {
+    min-height: auto;
+    padding: 100px 40px 60px 40px;
+    box-sizing: border-box;
+}
+
+.sobremi-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Encabezado */
+.sobremi-header {
+    position: relative;
+    z-index: 10;
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    transition: all 0.25s ease;
+}
+
+.back-btn:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Foto + Historia */
+.sobremi-hero-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    align-items: start;
+    gap: 40px;
+    padding-top: 20px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 60px;
+}
+
+.sobremi-photo-wrapper {
+    height: auto;
+    display: block;
+}
+
+.sobremi-photo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    transform: translateY(20px);
+}
+
+.sobremi-bio-content h2 {
+    text-align: left;
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 25px;
+}
+
+.sobremi-bio-content h2 span {
+    color: var(--neon-purple);
+    text-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
+}
+
+.bio-text {
+    text-align: left;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+/* Setup / Battlestation (integrado como sección de la misma página) */
+.setup-section {
+    padding-bottom: 20px;
+}
+
+.setup-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.setup-tag {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--neon-cyan);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.setup-header h2 {
+    font-size: 2.3rem;
+    font-weight: 950;
+    margin-bottom: 15px;
+}
+
+.setup-header h2 span {
+    color: var(--neon-purple);
+    text-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
+}
+
+.setup-header p {
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.setup-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 16px;
+}
+
+.spec-row-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(19, 15, 38, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 18px 24px;
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    transition: all 0.25s ease;
+}
+
+.spec-row-card:hover {
+    background: rgba(19, 15, 38, 0.7);
+    border-color: rgba(0, 245, 212, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 245, 212, 0.05);
+}
+
+.spec-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.spec-category {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.spec-model {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: white;
+}
+
+.spec-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--neon-cyan);
+    background: rgba(0, 245, 212, 0.08);
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 245, 212, 0.15);
+    white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 868px) {
+    .setup-specs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .spec-row-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .spec-badge {
+        align-self: flex-end;
+    }
+}
+
+@media (max-width: 768px) {
+    .sobremi-header {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .sobremi-hero-layout {
+        display: block;
+        padding: 20px 0 40px 0;
+    }
+
+    .sobremi-photo-wrapper {
+        height: auto;
+    }
+
+    .sobremi-photo {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        filter: none;
+        transform: none;
+    }
+
+    .sobremi-bio-content {
+        margin-top: 20px;
+    }
+}
