@@ -35,9 +35,6 @@ export default function Navbar() {
                     <NavLink to="/comunidad" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'} onClick={() => setIsOpen(false)}>
                         Comunidad
                     </NavLink>
-                    <NavLink to="/setup" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'} onClick={() => setIsOpen(false)}>
-                        Setup
-                    </NavLink>
                     <NavLink to="/mediakit" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'} onClick={() => setIsOpen(false)}>
                         Media Kit
                     </NavLink>
