@@ -10,6 +10,11 @@
 
 .hook-header {
     margin-bottom: 35px;
+    text-align: center;
+}
+
+.hook-header-secondary {
+    margin-top: 60px;
 }
 
 .hook-badge {
@@ -28,6 +33,20 @@
 .hook-header h2 span {
     color: var(--neon-purple);
     text-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
+}
+
+.video-card-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
+    grid-template-columns: none;
+}
+
+.hook-thumb-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(145, 70, 255, 0.15), rgba(19, 15, 38, 0.6));
 }
 
 .video-hero-card {
